@@ -10,9 +10,9 @@
 const CASES = [
     {
         url: "case-study-oils-store.html",
-        img: "images/case-oils-cover-final.png",
+        img: "https://i.postimg.cc/6Qbw7xqq/xm374Xf-Wx-H32i-Qg-H6x-SF1f-Wb-C8Ns9GHrmadk-YDu-AQ3Y.webp",
         alt: "متجر زيوت وعطارة إلكتروني في السعودية",
-        tag: "متجر سلة · زيوت وعطارة",
+        tag: "منصة سلة · السعودية",
         tagBg: "rgba(93,202,124,0.2)",
         tagColor: "#5DCA7C",
         flag: "sa",
