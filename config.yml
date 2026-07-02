@@ -1,0 +1,20 @@
+backend:
+  name: github
+  repo: muhammedyasserbs/my-portfolio
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "cases"
+    label: "الحالات الدراسية (Case Studies)"
+    folder: "case-studies-posts" # المجلد اللي اللوحة هترمي فيه الملفات الجديدة
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "العنوان (Title)", name: "title", widget: "string" }
+      - { label: "تاريخ النشر", name: "date", widget: "datetime" }
+      - { label: "الصورة البارزة", name: "image", widget: "image" }
+      - { label: "الوصف المختصر (SEO)", name: "description", widget: "string" }
+      - { label: "المحتوى الكامل للكيس استادي", name: "body", widget: "markdown" }
