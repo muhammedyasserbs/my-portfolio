@@ -75,7 +75,7 @@ function renderCases(containerId, limit) {
     const list = limit > 0 ? CASES.slice(0, limit) : CASES;
     grid.innerHTML = list.map((c, i) => `
         <a href="${c.url}" class="portfolio-card fade-up visible" style="transition-delay:${(i * 0.1).toFixed(1)}s;position:relative;overflow:visible;">
-            ${c.flag && FLAGS[c.flag] ? `<span class="card-flag" style="position:absolute;top:-16px;right:-14px;z-index:5;width:50px;height:50px;border-radius:50%;overflow:hidden;border:2px solid rgba(59,130,246,0.35);background:#0F172A;box-shadow:0 4px 14px rgba(0,0,0,0.45);display:block;"><img src="${FLAGS[c.flag]}" alt="علم الدولة" style="width:100%;height:100%;object-fit:cover;display:block;"></span>` : ``}
+            ${c.flag && FLAGS[c.flag] ? `<span class="card-flag" style="position:absolute;top:-16px;right:-14px;z-index:5;width:58px;height:58px;border-radius:50%;overflow:hidden;border:2px solid rgba(59,130,246,0.35);background:#0F172A;box-shadow:0 4px 14px rgba(0,0,0,0.45);display:block;"><img src="${FLAGS[c.flag]}" alt="علم الدولة" style="width:100%;height:100%;object-fit:cover;display:block;"></span>` : ``}
             <div class="portfolio-thumb" style="border-radius:16px 16px 0 0;">
                 <img src="${c.img}" alt="${c.alt}" loading="lazy">
                 <div class="portfolio-overlay"><span class="portfolio-tag" style="background:${c.tagBg};color:${c.tagColor};">${c.tag}</span></div>
