@@ -10,7 +10,7 @@
 const CASES = [
        {
         url: "case-study-appliances-store.html",
-        img: "images/case-appliances-cover.png",
+        img: "https://i.postimg.cc/1RKfCvMc/case-appliances-cover.webp",
         alt: "متجر أجهزة منزلية وكهربائية إلكتروني في السعودية",
         tag: "متجر سلة · أجهزة منزلية",
         tagBg: "rgba(6,182,212,0.2)",
