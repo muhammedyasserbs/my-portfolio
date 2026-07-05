@@ -8,6 +8,18 @@
    ============================================================ */
 
 const CASES = [
+       {
+        url: "case-study-appliances-store.html",
+        img: "images/case-appliances-cover.png",
+        alt: "متجر أجهزة منزلية وكهربائية إلكتروني في السعودية",
+        tag: "متجر سلة · أجهزة منزلية",
+        tagBg: "rgba(6,182,212,0.2)",
+        tagColor: "#06B6D4",
+        flag: "sa",
+        title: "متجر أجهزة منزلية وكهربائية سعودي",
+        desc: "تأسيس SEO من الصفر لمتجر أجهزة منزلية على سلة وتحويل جوجل لقناة مبيعات حقيقية",
+        result: "+544% نمو عضوي و 42.8 ألف ريال مبيعات من جوجل"
+    },
     {
         url: "case-study-oils-store.html",
         img: "https://i.postimg.cc/6Qbw7xqq/xm374Xf-Wx-H32i-Qg-H6x-SF1f-Wb-C8Ns9GHrmadk-YDu-AQ3Y.webp",
