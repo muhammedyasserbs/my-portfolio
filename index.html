@@ -96,7 +96,7 @@
         .search-pill { position: relative; z-index: 4; display: flex; align-items: center; gap: 10px; background: rgba(15, 23, 42, 0.92); border: 1px solid var(--border); border-radius: 50px; padding: 11px 20px; margin-bottom: 18px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35); direction: ltr; animation: pill-glow 3.5s ease-in-out infinite; }
         @keyframes pill-glow { 0%, 100% { border-color: rgba(59, 130, 246, 0.2); } 50% { border-color: rgba(59, 130, 246, 0.55); } }
         .search-pill svg { flex-shrink: 0; }
-        .search-pill .q { font-family: 'Inter', sans-serif; font-size: 0.85rem; color: var(--text); font-weight: 500; white-space: nowrap; overflow: hidden; }
+        .search-pill .q { font-family: 'Inter', sans-serif; font-size: 0.85rem; color: #FFFFFF !important; font-weight: 500; white-space: nowrap; overflow: hidden; }
         .search-pill .caret { width: 2px; height: 16px; background: var(--accent); animation: caret-blink 1s step-end infinite; }
         @keyframes caret-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         .photo-card { position: relative; z-index: 2; border-radius: 22px; padding: 4px; background: var(--gradient1); box-shadow: 0 20px 60px rgba(59, 130, 246, 0.25); }
@@ -126,8 +126,11 @@
         .section-header p { color: var(--text-secondary); font-size: 1.05rem; max-width: 600px; margin: 0 auto; }
         .section-alt { background: var(--card-bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
         /* ===== آراء العملاء ===== */
-        .testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-        .testi-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 28px; backdrop-filter: blur(10px); position: relative; transition: all 0.35s ease; }
+        .testi-slider-wrap { position: relative; }
+        .testi-grid { display: flex; gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding: 10px 4px 20px; scrollbar-width: none; }
+        .testi-grid::-webkit-scrollbar { display: none; }
+        .testi-card { flex: 0 0 calc(50% - 11px); scroll-snap-align: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 28px; backdrop-filter: blur(10px); position: relative; transition: all 0.35s ease; display: flex; flex-direction: column; }
+        .testi-card .testi-text { flex: 1; }
         .testi-card:hover { transform: translateY(-5px); border-color: rgba(59, 130, 246, 0.4); }
         .testi-card .quote-mark { position: absolute; top: 18px; left: 22px; font-size: 3rem; line-height: 1; color: rgba(59, 130, 246, 0.15); font-family: serif; }
         .testi-stars { color: #F59E0B; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 12px; }
@@ -136,15 +139,19 @@
         .testi-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--gradient1); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; font-size: 1rem; flex-shrink: 0; }
         .testi-who .w-name { font-size: 0.88rem; font-weight: 700; }
         .testi-who .w-role { font-size: 0.75rem; color: var(--text-secondary); margin-top: 2px; }
-        @media (max-width: 768px) { .testi-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { .testi-card { flex: 0 0 88%; } .testi-nav { display: none; } }
+        .testi-nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 5; width: 42px; height: 42px; border-radius: 50%; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border); color: var(--accent); font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; backdrop-filter: blur(10px); }
+        .testi-nav:hover { background: var(--accent); color: #fff; }
+        .testi-nav.prev { right: -14px; }
+        .testi-nav.next { left: -14px; }
 
         /* ===== شريط المنصات في الهيرو ===== */
         .hero-platforms { display: flex; align-items: center; gap: 18px; margin-top: 28px; flex-wrap: wrap; }
         .hero-platforms .hp-label { font-size: 0.78rem; color: var(--text-secondary); font-weight: 600; }
         .hero-platforms img { height: 26px; width: auto; object-fit: contain; filter: grayscale(1) opacity(0.55); transition: filter 0.3s; }
-        .hero-platforms img.hp-big { height: 38px; }
+        .hero-platforms img.hp-big { height: 46px; }
         .hero-platforms img:hover { filter: grayscale(0) opacity(1); }
-        @media (max-width: 768px) { .hero-platforms { justify-content: center; } .hero-platforms img { height: 22px; } .hero-platforms img.hp-big { height: 32px; } }
+        @media (max-width: 768px) { .hero-platforms { justify-content: center; } .hero-platforms img { height: 22px; } .hero-platforms img.hp-big { height: 38px; } }
 
         /* ===== بريلودر ===== */
         #preloader { position: fixed; inset: 0; z-index: 9999; background: var(--primary); display: flex; align-items: center; justify-content: center; transition: opacity 0.45s ease, visibility 0.45s; animation: preloader-autohide 0.4s ease 2.2s forwards; }
@@ -170,17 +177,17 @@
         .gsc-slider-wrap { position: relative; }
         .gsc-grid { display: flex; gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding: 10px 4px 20px; scrollbar-width: none; }
         .gsc-grid::-webkit-scrollbar { display: none; }
-        .gsc-card { flex: 0 0 calc(50% - 11px); scroll-snap-align: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; backdrop-filter: blur(10px); transition: all 0.35s ease; }
+        .gsc-card { flex: 0 0 calc(50% - 11px); scroll-snap-align: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; backdrop-filter: blur(10px); transition: all 0.35s ease; display: flex; flex-direction: column; }
         .gsc-nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 5; width: 42px; height: 42px; border-radius: 50%; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border); color: var(--accent); font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; backdrop-filter: blur(10px); }
         .gsc-nav:hover { background: var(--accent); color: #fff; }
         .gsc-nav.prev { right: -14px; }
         .gsc-nav.next { left: -14px; }
         .gsc-card:hover { transform: translateY(-5px); border-color: rgba(59, 130, 246, 0.4); box-shadow: 0 12px 40px rgba(59, 130, 246, 0.12); }
-        .gsc-shot { position: relative; cursor: zoom-in; }
-        .gsc-shot img { width: 100%; display: block; }
+        .gsc-shot { position: relative; cursor: zoom-in; height: 240px; background: rgba(15, 23, 42, 0.5); }
+        .gsc-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
         .gsc-shot::after { content: '🔍 اضغط للتكبير'; position: absolute; bottom: 10px; left: 10px; background: rgba(15, 23, 42, 0.85); color: var(--text-secondary); font-size: 0.68rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; opacity: 0; transition: opacity 0.3s; }
         .gsc-shot:hover::after { opacity: 1; }
-        .gsc-meta { padding: 18px 20px; border-top: 1px solid var(--border); }
+        .gsc-meta { padding: 18px 20px; border-top: 1px solid var(--border); flex: 1; display: flex; flex-direction: column; }
         .gsc-meta .g-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
         .gsc-niche { font-size: 0.9rem; font-weight: 800; }
         .gsc-badge { flex-shrink: 0; font-size: 0.68rem; font-weight: 700; padding: 3px 12px; border-radius: 12px; background: rgba(66, 133, 244, 0.12); color: #4285F4; border: 1px solid rgba(66, 133, 244, 0.3); }
@@ -189,6 +196,9 @@
         @media (max-width: 768px) {
             .gsc-card { flex: 0 0 88%; }
             .gsc-nav { display: none; }
+            .gsc-shot { height: 170px; }
+            .gsc-niche { font-size: 0.82rem; }
+            .gsc-sum { font-size: 0.78rem; }
         }
         /* لايت بوكس تكبير الصور */
         .lightbox { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 30px; cursor: zoom-out; }
@@ -752,7 +762,7 @@
                     </div>
                     <div class="gsc-meta">
                         <div class="g-top">
-                            <span class="gsc-niche">🌿 متجر زيوت وعطارة</span>
+                            <span class="gsc-niche">متجر زيوت وعطارة</span>
                             <span class="gsc-badge">Search Console</span>
                         </div>
                         <p class="gsc-sum">النقرات قفزت من 2.56 ألف لـ <strong>17.1 ألف</strong> والظهور من 123 ألف لـ <strong>1.45 مليون</strong> خلال 6 شهور</p>
@@ -764,7 +774,7 @@
                     </div>
                     <div class="gsc-meta">
                         <div class="g-top">
-                            <span class="gsc-niche">🔌 متجر أجهزة منزلية وكهربائية</span>
+                            <span class="gsc-niche">متجر أجهزة منزلية وكهربائية</span>
                             <span class="gsc-badge">Search Console</span>
                         </div>
                         <p class="gsc-sum">النقرات زادت <strong>+119%</strong> ومعدل النقر CTR اتحسن من 1.6% لـ <strong>2.8%</strong> في شهرين</p>
@@ -1116,7 +1126,10 @@
     <section id="testimonials" class="section-alt">
         <div class="container">
             <div class="section-header fade-up"><h2>آراء <span>العملاء</span></h2><p>اللي بيقولوه أصحاب المشاريع اللي اشتغلت معاهم</p></div>
-            <div class="testi-grid">
+            <div class="testi-slider-wrap fade-up">
+                <button class="testi-nav prev" onclick="testiSlide(1)" aria-label="السابق">‹</button>
+                <button class="testi-nav next" onclick="testiSlide(-1)" aria-label="التالي">›</button>
+                <div class="testi-grid" id="testiSlider">
                 <div class="testi-card fade-up">
                     <span class="quote-mark">"</span>
                     <div class="testi-stars">★★★★★</div>
@@ -1134,6 +1147,7 @@
                         <div class="testi-avatar">م</div>
                         <div><div class="w-name">مدير متجر أجهزة منزلية</div><div class="w-role">متجر إلكتروني · السعودية</div></div>
                     </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -1375,6 +1389,13 @@
         }, { threshold: 0.6 });
         document.querySelectorAll('.stat-item .number').forEach(el => counterObserver.observe(el));
 
+        function testiSlide(dir) {
+            const s = document.getElementById('testiSlider');
+            if (!s) return;
+            const card = s.querySelector('.testi-card');
+            const step = card ? card.offsetWidth + 22 : 400;
+            s.scrollBy({ left: dir * step, behavior: 'smooth' });
+        }
         function gscSlide(dir) {
             const s = document.getElementById('gscSlider');
             if (!s) return;
@@ -1639,5 +1660,5 @@
         initSeamlessMarquee({ marqueeSelector: '.platforms-marquee', trackSelector: '.platforms-track', direction: 1, speed: 60 });
         initSeamlessMarquee({ marqueeSelector: '.tools-marquee', trackSelector: '.tools-track', direction: -1, speed: 55 });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1308cdebfef1852',t:'MTc4MjY5MDE3MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1bcbfe358b30115',t:'MTc4NDE2MDI2Ng=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1308cdebfef1852',t:'MTc4MjY5MDE3MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1bcd4dddb590115',t:'MTc4NDE2MTEyNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
