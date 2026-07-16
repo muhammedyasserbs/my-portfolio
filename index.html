@@ -125,6 +125,77 @@
         .section-header h2 span { background: var(--gradient1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .section-header p { color: var(--text-secondary); font-size: 1.05rem; max-width: 600px; margin: 0 auto; }
         .section-alt { background: var(--card-bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        /* ===== آراء العملاء ===== */
+        .testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+        .testi-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 28px; backdrop-filter: blur(10px); position: relative; transition: all 0.35s ease; }
+        .testi-card:hover { transform: translateY(-5px); border-color: rgba(59, 130, 246, 0.4); }
+        .testi-card .quote-mark { position: absolute; top: 18px; left: 22px; font-size: 3rem; line-height: 1; color: rgba(59, 130, 246, 0.15); font-family: serif; }
+        .testi-stars { color: #F59E0B; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 12px; }
+        .testi-text { color: var(--text); font-size: 0.95rem; line-height: 2; margin-bottom: 18px; }
+        .testi-who { display: flex; align-items: center; gap: 12px; border-top: 1px solid var(--border); padding-top: 16px; }
+        .testi-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--gradient1); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; font-size: 1rem; flex-shrink: 0; }
+        .testi-who .w-name { font-size: 0.88rem; font-weight: 700; }
+        .testi-who .w-role { font-size: 0.75rem; color: var(--text-secondary); margin-top: 2px; }
+        @media (max-width: 768px) { .testi-grid { grid-template-columns: 1fr; } }
+
+        /* ===== شريط المنصات في الهيرو ===== */
+        .hero-platforms { display: flex; align-items: center; gap: 18px; margin-top: 28px; flex-wrap: wrap; }
+        .hero-platforms .hp-label { font-size: 0.78rem; color: var(--text-secondary); font-weight: 600; }
+        .hero-platforms img { height: 26px; width: auto; object-fit: contain; filter: grayscale(1) opacity(0.55); transition: filter 0.3s; }
+        .hero-platforms img.hp-big { height: 38px; }
+        .hero-platforms img:hover { filter: grayscale(0) opacity(1); }
+        @media (max-width: 768px) { .hero-platforms { justify-content: center; } .hero-platforms img { height: 22px; } .hero-platforms img.hp-big { height: 32px; } }
+
+        /* ===== بريلودر ===== */
+        #preloader { position: fixed; inset: 0; z-index: 9999; background: var(--primary); display: flex; align-items: center; justify-content: center; transition: opacity 0.45s ease, visibility 0.45s; animation: preloader-autohide 0.4s ease 2.2s forwards; }
+        #preloader.hide { opacity: 0; visibility: hidden; }
+        @keyframes preloader-autohide { to { opacity: 0; visibility: hidden; } }
+        .pre-ring { width: 54px; height: 54px; border-radius: 50%; border: 3px solid rgba(59, 130, 246, 0.15); border-top-color: var(--accent); animation: pre-spin 0.8s linear infinite; }
+        @keyframes pre-spin { to { transform: rotate(360deg); } }
+
+        /* ===== الوضع الفاتح ===== */
+        body.light { --primary: #F1F5F9; --primary-light: #E2E8F0; --text: #0F172A; --text-secondary: #475569; --card-bg: rgba(255, 255, 255, 0.85); --border: rgba(59, 130, 246, 0.25); }
+        body.light nav { background: rgba(241, 245, 249, 0.9); }
+        body.light .nav-links { background: transparent; }
+        body.light footer { background: rgba(226, 232, 240, 0.9); }
+        body.light .bg-animation .circle { opacity: 0.07; }
+        body.light #preloader { background: #F1F5F9; }
+        @media (max-width: 768px) { body.light .nav-links { background: rgba(241, 245, 249, 0.97); } }
+        .theme-toggle { width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--border); background: transparent; color: var(--text-secondary); font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; flex-shrink: 0; }
+        .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+        /* ===== قسم النتائج (لقطات من Search Console) ===== */
+        #results { scroll-margin-top: 80px; }
+        .results-intro { text-align: center; color: var(--text-secondary); font-size: 0.9rem; margin: -35px auto 40px; max-width: 620px; }
+        .gsc-slider-wrap { position: relative; }
+        .gsc-grid { display: flex; gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding: 10px 4px 20px; scrollbar-width: none; }
+        .gsc-grid::-webkit-scrollbar { display: none; }
+        .gsc-card { flex: 0 0 calc(50% - 11px); scroll-snap-align: center; background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; backdrop-filter: blur(10px); transition: all 0.35s ease; }
+        .gsc-nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 5; width: 42px; height: 42px; border-radius: 50%; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border); color: var(--accent); font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; backdrop-filter: blur(10px); }
+        .gsc-nav:hover { background: var(--accent); color: #fff; }
+        .gsc-nav.prev { right: -14px; }
+        .gsc-nav.next { left: -14px; }
+        .gsc-card:hover { transform: translateY(-5px); border-color: rgba(59, 130, 246, 0.4); box-shadow: 0 12px 40px rgba(59, 130, 246, 0.12); }
+        .gsc-shot { position: relative; cursor: zoom-in; }
+        .gsc-shot img { width: 100%; display: block; }
+        .gsc-shot::after { content: '🔍 اضغط للتكبير'; position: absolute; bottom: 10px; left: 10px; background: rgba(15, 23, 42, 0.85); color: var(--text-secondary); font-size: 0.68rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; opacity: 0; transition: opacity 0.3s; }
+        .gsc-shot:hover::after { opacity: 1; }
+        .gsc-meta { padding: 18px 20px; border-top: 1px solid var(--border); }
+        .gsc-meta .g-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+        .gsc-niche { font-size: 0.9rem; font-weight: 800; }
+        .gsc-badge { flex-shrink: 0; font-size: 0.68rem; font-weight: 700; padding: 3px 12px; border-radius: 12px; background: rgba(66, 133, 244, 0.12); color: #4285F4; border: 1px solid rgba(66, 133, 244, 0.3); }
+        .gsc-sum { color: var(--text-secondary); font-size: 0.82rem; line-height: 1.8; }
+        .gsc-sum strong { color: #10B981; font-family: 'Inter', sans-serif; }
+        @media (max-width: 768px) {
+            .gsc-card { flex: 0 0 88%; }
+            .gsc-nav { display: none; }
+        }
+        /* لايت بوكس تكبير الصور */
+        .lightbox { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 30px; cursor: zoom-out; }
+        .lightbox.open { display: flex; }
+        .lightbox img { max-width: 100%; max-height: 90vh; border-radius: 12px; border: 1px solid var(--border); }
+        .lightbox .close-x { position: absolute; top: 20px; right: 25px; color: var(--text); font-size: 2rem; cursor: pointer; line-height: 1; }
+
 
         /* Services */
         .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
@@ -529,6 +600,7 @@
     </script>
 </head>
 <body>
+    <div id="preloader"><div class="pre-ring"></div></div>
     <div class="bg-animation"><div class="circle"></div><div class="circle"></div><div class="circle"></div></div>
 
     <!-- Nav -->
@@ -538,6 +610,7 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">الرئيسية</a></li>
                 <li><a href="#services">الخدمات</a></li>
+                <li><a href="#results">النتائج</a></li>
                 <li><a href="case-studies.html">كيس استادي</a></li>
                 <li><a href="#platforms">المنصات</a></li>
                 <li><a href="#tools">الأدوات</a></li>
@@ -545,6 +618,7 @@
                 <li><a href="#faq">الأسئلة</a></li>
             </ul>
             <div style="display:flex;align-items:center;gap:14px;">
+                <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="الوضع الفاتح/الداكن" aria-label="تبديل الوضع">🌙</button>
                 <a href="#contact" class="nav-cta">تواصل</a>
                 <div class="hamburger" onclick="document.getElementById('navLinks').style.display=document.getElementById('navLinks').style.display==='flex'?'none':'flex'">
                     <span></span><span></span><span></span>
@@ -572,6 +646,13 @@
                         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
                         اكتشف خدماتي
                     </a>
+                </div>
+                <div class="hero-platforms">
+                    <span class="hp-label">بشتغل على:</span>
+                    <img src="https://i.postimg.cc/pTVrtbKD/Salla2-01.png" alt="سلة" title="سلة" class="hp-big" loading="lazy">
+                    <img src="https://i.postimg.cc/Tw21XMnH/Zid-En-01.png" alt="زد" title="زد" class="hp-big" loading="lazy">
+                    <img src="https://i.postimg.cc/xd95B51C/shopify.png" alt="Shopify" title="Shopify" loading="lazy">
+                    <img src="https://i.postimg.cc/d0j3XtZ0/logo-wordpress-49497.png" alt="WordPress" title="WordPress" loading="lazy">
                 </div>
             </div>
             <div class="hero-visual">
@@ -652,6 +733,43 @@
                     <h3>SEO للمواقع الخدمية و SaaS</h3>
                     <p>استراتيجيات SEO مخصصة لجذب العملاء المحتملين</p>
                     <ul><li>تحسين صفحات الخدمات Landing Pages</li><li>استراتيجية محتوى SaaS</li><li>تحسين Conversion Rate</li><li>Building Topical Authority</li></ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results (نتائج من Search Console) -->
+    <section id="results" class="section-alt">
+        <div class="container">
+            <div class="section-header fade-up"><h2><span>النتائج</span></h2><p>دي لقطات مباشرة من Google Search Console لمشاريع اشتغلت عليها</p></div>
+            <div class="gsc-slider-wrap fade-up">
+                <button class="gsc-nav prev" onclick="gscSlide(1)" aria-label="السابق">‹</button>
+                <button class="gsc-nav next" onclick="gscSlide(-1)" aria-label="التالي">›</button>
+                <div class="gsc-grid" id="gscSlider">
+                <div class="gsc-card fade-up">
+                    <div class="gsc-shot" onclick="openLightbox(this)">
+                        <img src="https://i.postimg.cc/SNSpbcpM/kwnswl-mtjr-zywt-tbyʿyt.webp" alt="نتائج Search Console - متجر زيوت وعطارة: نمو النقرات من 2.56 ألف لـ 17.1 ألف" loading="lazy">
+                    </div>
+                    <div class="gsc-meta">
+                        <div class="g-top">
+                            <span class="gsc-niche">🌿 متجر زيوت وعطارة</span>
+                            <span class="gsc-badge">Search Console</span>
+                        </div>
+                        <p class="gsc-sum">النقرات قفزت من 2.56 ألف لـ <strong>17.1 ألف</strong> والظهور من 123 ألف لـ <strong>1.45 مليون</strong> خلال 6 شهور</p>
+                    </div>
+                </div>
+                <div class="gsc-card fade-up" style="transition-delay:0.1s">
+                    <div class="gsc-shot" onclick="openLightbox(this)">
+                        <img src="https://i.postimg.cc/3JJWP2cQ/kwnswl-mtjr-ajhzt-mnzlyt-wkhrbyt.webp" alt="نتائج Search Console - متجر أجهزة منزلية: نمو النقرات +119% والـ CTR من 1.6% لـ 2.8%" loading="lazy">
+                    </div>
+                    <div class="gsc-meta">
+                        <div class="g-top">
+                            <span class="gsc-niche">🔌 متجر أجهزة منزلية وكهربائية</span>
+                            <span class="gsc-badge">Search Console</span>
+                        </div>
+                        <p class="gsc-sum">النقرات زادت <strong>+119%</strong> ومعدل النقر CTR اتحسن من 1.6% لـ <strong>2.8%</strong> في شهرين</p>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -994,6 +1112,33 @@
     </section>
 
     <!-- FAQ -->
+    <!-- Testimonials -->
+    <section id="testimonials" class="section-alt">
+        <div class="container">
+            <div class="section-header fade-up"><h2>آراء <span>العملاء</span></h2><p>اللي بيقولوه أصحاب المشاريع اللي اشتغلت معاهم</p></div>
+            <div class="testi-grid">
+                <div class="testi-card fade-up">
+                    <span class="quote-mark">"</span>
+                    <div class="testi-stars">★★★★★</div>
+                    <p class="testi-text">كنا بندفع آلاف الريالات شهريًا في الإعلانات، دلوقتي البحث العضوي بيجيب لنا طلبات يومية من غير ما ندفع ريال. أفضل استثمار عملناه للمتجر.</p>
+                    <div class="testi-who">
+                        <div class="testi-avatar">ع</div>
+                        <div><div class="w-name">صاحب متجر زيوت وعطارة</div><div class="w-role">متجر إلكتروني · السعودية</div></div>
+                    </div>
+                </div>
+                <div class="testi-card fade-up" style="transition-delay:0.1s">
+                    <span class="quote-mark">"</span>
+                    <div class="testi-stars">★★★★★</div>
+                    <p class="testi-text">أول مرة نشوف مبيعات حقيقية جاية من جوجل. الشغل كان منظم بتقارير واضحة كل شهر، وكل رقم كان له إثبات قدامنا.</p>
+                    <div class="testi-who">
+                        <div class="testi-avatar">م</div>
+                        <div><div class="w-name">مدير متجر أجهزة منزلية</div><div class="w-role">متجر إلكتروني · السعودية</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="faq">
         <div class="container">
             <div class="section-header fade-up">
@@ -1170,12 +1315,85 @@
     </a>
 
     <!-- Back to Top -->
+    <!-- Lightbox لتكبير صور النتائج -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="close-x">&times;</span>
+        <img id="lightboxImg" src="" alt="صورة مكبرة">
+    </div>
+
     <button class="back-to-top" id="backToTop" title="العودة لأعلى">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
     </button>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="cases-data.js"></script><script>
         try { renderCases("homeCasesGrid", 3); } catch (e) { console.warn("cases-data.js لم يتم تحميله:", e); }
+        /* ===== بريلودر ===== */
+        window.addEventListener('load', () => {
+            const p = document.getElementById('preloader');
+            if (p) setTimeout(() => p.classList.add('hide'), 250);
+        });
+
+        /* ===== الوضع الفاتح/الداكن ===== */
+        function toggleTheme() {
+            const light = document.body.classList.toggle('light');
+            try { localStorage.setItem('theme', light ? 'light' : 'dark'); } catch (e) {}
+            const btn = document.getElementById('themeToggle');
+            if (btn) btn.textContent = light ? '☀️' : '🌙';
+        }
+        try {
+            if (localStorage.getItem('theme') === 'light') {
+                document.body.classList.add('light');
+                const btn = document.getElementById('themeToggle');
+                if (btn) btn.textContent = '☀️';
+            }
+        } catch (e) {}
+
+        /* ===== عداد الأرقام المتحرك ===== */
+        function animateCounter(el) {
+            const raw = el.textContent.trim();
+            const m = raw.match(/\d+/);
+            if (!m) return;
+            const target = parseInt(m[0], 10);
+            const prefix = raw.slice(0, m.index);
+            const suffix = raw.slice(m.index + m[0].length);
+            const dur = 1400, t0 = performance.now();
+            function tick(t) {
+                const p = Math.min((t - t0) / dur, 1);
+                const eased = 1 - Math.pow(1 - p, 3);
+                el.textContent = prefix + Math.round(target * eased) + suffix;
+                if (p < 1) requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+        }
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting && !e.target.dataset.counted) {
+                    e.target.dataset.counted = "1";
+                    animateCounter(e.target);
+                }
+            });
+        }, { threshold: 0.6 });
+        document.querySelectorAll('.stat-item .number').forEach(el => counterObserver.observe(el));
+
+        function gscSlide(dir) {
+            const s = document.getElementById('gscSlider');
+            if (!s) return;
+            const card = s.querySelector('.gsc-card');
+            const step = card ? card.offsetWidth + 22 : 400;
+            s.scrollBy({ left: dir * step, behavior: 'smooth' });
+        }
+        function openLightbox(el) {
+            const img = el.querySelector('img');
+            document.getElementById('lightboxImg').src = img.src;
+            document.getElementById('lightbox').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
@@ -1421,5 +1639,5 @@
         initSeamlessMarquee({ marqueeSelector: '.platforms-marquee', trackSelector: '.platforms-track', direction: 1, speed: 60 });
         initSeamlessMarquee({ marqueeSelector: '.tools-marquee', trackSelector: '.tools-track', direction: -1, speed: 55 });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1308cdebfef1852',t:'MTc4MjY5MDE3MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a170ddd60974ad9d',t:'MTc4MzM2NDU3NQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1308cdebfef1852',t:'MTc4MjY5MDE3MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1bcbfe358b30115',t:'MTc4NDE2MDI2Ng=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
