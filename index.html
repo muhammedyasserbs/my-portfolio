@@ -183,8 +183,17 @@
         .gsc-nav.prev { right: -14px; }
         .gsc-nav.next { left: -14px; }
         .gsc-card:hover { transform: translateY(-5px); border-color: rgba(59, 130, 246, 0.4); box-shadow: 0 12px 40px rgba(59, 130, 246, 0.12); }
-        .gsc-shot { position: relative; cursor: zoom-in; height: 240px; background: rgba(15, 23, 42, 0.5); }
-        .gsc-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+        .gsc-tabs { display: flex; gap: 8px; padding: 12px 14px 0; }
+        .gsc-tab { flex: 1; padding: 8px 10px; border-radius: 10px 10px 0 0; border: 1px solid var(--border); border-bottom: none; background: rgba(15, 23, 42, 0.45); color: var(--text-secondary); font-size: 0.74rem; font-weight: 700; font-family: 'Cairo', sans-serif; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .gsc-tab .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+        .gsc-tab[data-tab="gsc"] .dot { background: #4285F4; }
+        .gsc-tab[data-tab="ga"] .dot { background: #F18F01; }
+        .gsc-tab.active { background: var(--card-bg); color: var(--text); border-color: rgba(59, 130, 246, 0.45); }
+        .gsc-tab:hover:not(.active) { color: var(--text); }
+        .gsc-shot { position: relative; cursor: zoom-in; height: 240px; background: rgba(15, 23, 42, 0.6); display: flex; align-items: center; justify-content: center; }
+        .gsc-shot img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: none; margin: auto; }
+        .gsc-shot img.active { display: block; animation: tab-fade 0.35s ease; }
+        @keyframes tab-fade { from { opacity: 0; } to { opacity: 1; } }
         .gsc-shot::after { content: '🔍 اضغط للتكبير'; position: absolute; bottom: 10px; left: 10px; background: rgba(15, 23, 42, 0.85); color: var(--text-secondary); font-size: 0.68rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; opacity: 0; transition: opacity 0.3s; }
         .gsc-shot:hover::after { opacity: 1; }
         .gsc-meta { padding: 18px 20px; border-top: 1px solid var(--border); flex: 1; display: flex; flex-direction: column; }
@@ -196,7 +205,7 @@
         @media (max-width: 768px) {
             .gsc-card { flex: 0 0 88%; }
             .gsc-nav { display: none; }
-            .gsc-shot { height: 170px; }
+            .gsc-shot { height: 180px; }
             .gsc-niche { font-size: 0.82rem; }
             .gsc-sum { font-size: 0.78rem; }
         }
@@ -751,31 +760,39 @@
     <!-- Results (نتائج من Search Console) -->
     <section id="results" class="section-alt">
         <div class="container">
-            <div class="section-header fade-up"><h2><span>النتائج</span></h2><p>دي لقطات مباشرة من Google Search Console لمشاريع اشتغلت عليها</p></div>
+            <div class="section-header fade-up"><h2>النتائج <span>اللي حققتها</span></h2><p>دي لقطات مباشرة من Google Search Console لمشاريع اشتغلت عليها</p></div>
             <div class="gsc-slider-wrap fade-up">
                 <button class="gsc-nav prev" onclick="gscSlide(1)" aria-label="السابق">‹</button>
                 <button class="gsc-nav next" onclick="gscSlide(-1)" aria-label="التالي">›</button>
                 <div class="gsc-grid" id="gscSlider">
                 <div class="gsc-card fade-up">
+                    <div class="gsc-tabs">
+                        <button class="gsc-tab active" data-tab="gsc" onclick="gscTab(this)"><span class="dot"></span>Search Console</button>
+                        <button class="gsc-tab" data-tab="ga" onclick="gscTab(this)"><span class="dot"></span>Analytics</button>
+                    </div>
                     <div class="gsc-shot" onclick="openLightbox(this)">
-                        <img src="https://i.postimg.cc/SNSpbcpM/kwnswl-mtjr-zywt-tbyʿyt.webp" alt="نتائج Search Console - متجر زيوت وعطارة: نمو النقرات من 2.56 ألف لـ 17.1 ألف" loading="lazy">
+                        <img class="active" data-shot="gsc" data-sum="النقرات قفزت من 2.56 ألف لـ <strong>17.1 ألف</strong> والظهور من 123 ألف لـ <strong>1.45 مليون</strong> خلال 6 شهور" src="https://i.postimg.cc/SNSpbcpM/kwnswl-mtjr-zywt-tbyʿyt.webp" alt="نتائج Search Console - متجر زيوت وعطارة" loading="lazy">
+                        <img data-shot="ga" data-sum="الإيرادات العضوية قفزت من 26.5 ألف لـ <strong>106.3 ألف ريال</strong> والجلسات من 3,131 لـ <strong>18,839</strong> (+501%)" src="https://i.postimg.cc/DyvK31KG/analytyks-mtjr-zywt-tbyʿyt.webp" alt="نتائج Google Analytics - متجر زيوت وعطارة" loading="lazy">
                     </div>
                     <div class="gsc-meta">
                         <div class="g-top">
                             <span class="gsc-niche">متجر زيوت وعطارة</span>
-                            <span class="gsc-badge">Search Console</span>
                         </div>
                         <p class="gsc-sum">النقرات قفزت من 2.56 ألف لـ <strong>17.1 ألف</strong> والظهور من 123 ألف لـ <strong>1.45 مليون</strong> خلال 6 شهور</p>
                     </div>
                 </div>
                 <div class="gsc-card fade-up" style="transition-delay:0.1s">
+                    <div class="gsc-tabs">
+                        <button class="gsc-tab active" data-tab="gsc" onclick="gscTab(this)"><span class="dot"></span>Search Console</button>
+                        <button class="gsc-tab" data-tab="ga" onclick="gscTab(this)"><span class="dot"></span>Analytics</button>
+                    </div>
                     <div class="gsc-shot" onclick="openLightbox(this)">
-                        <img src="https://i.postimg.cc/3JJWP2cQ/kwnswl-mtjr-ajhzt-mnzlyt-wkhrbyt.webp" alt="نتائج Search Console - متجر أجهزة منزلية: نمو النقرات +119% والـ CTR من 1.6% لـ 2.8%" loading="lazy">
+                        <img class="active" data-shot="gsc" data-sum="النقرات زادت <strong>+119%</strong> ومعدل النقر CTR اتحسن من 1.6% لـ <strong>2.8%</strong> في شهرين" src="https://i.postimg.cc/3JJWP2cQ/kwnswl-mtjr-ajhzt-mnzlyt-wkhrbyt.webp" alt="نتائج Search Console - متجر أجهزة منزلية" loading="lazy">
+                        <img data-shot="ga" data-sum="الإيرادات العضوية قفزت من 689 لـ <strong>42,859 ريال</strong> والجلسات من 662 لـ <strong>4,267</strong> (+544%)" src="https://i.postimg.cc/CLLdWbQ0/ana-lytyks-mtjr-ajhzt-mnzlyt-wkhrbyt.webp" alt="نتائج Google Analytics - متجر أجهزة منزلية" loading="lazy">
                     </div>
                     <div class="gsc-meta">
                         <div class="g-top">
                             <span class="gsc-niche">متجر أجهزة منزلية وكهربائية</span>
-                            <span class="gsc-badge">Search Console</span>
                         </div>
                         <p class="gsc-sum">النقرات زادت <strong>+119%</strong> ومعدل النقر CTR اتحسن من 1.6% لـ <strong>2.8%</strong> في شهرين</p>
                     </div>
@@ -1396,6 +1413,32 @@
             const step = card ? card.offsetWidth + 22 : 400;
             s.scrollBy({ left: dir * step, behavior: 'smooth' });
         }
+        /* لو الكارت فيه صورة واحدة بس — التابات تتخفي تلقائي */
+        document.querySelectorAll('.gsc-card').forEach(card => {
+            const imgs = card.querySelectorAll('.gsc-shot img');
+            const tabs = card.querySelector('.gsc-tabs');
+            if (imgs.length < 2 && tabs) {
+                tabs.style.display = 'none';
+                if (imgs.length === 1) {
+                    imgs[0].classList.add('active');
+                    const sum = card.querySelector('.gsc-sum');
+                    if (sum && imgs[0].dataset.sum) sum.innerHTML = imgs[0].dataset.sum;
+                }
+            }
+        });
+        function gscTab(btn) {
+            const card = btn.closest('.gsc-card');
+            const tab = btn.dataset.tab;
+            card.querySelectorAll('.gsc-tab').forEach(t => t.classList.toggle('active', t === btn));
+            let activeImg = null;
+            card.querySelectorAll('.gsc-shot img').forEach(im => {
+                const on = im.dataset.shot === tab;
+                im.classList.toggle('active', on);
+                if (on) activeImg = im;
+            });
+            const sum = card.querySelector('.gsc-sum');
+            if (sum && activeImg && activeImg.dataset.sum) sum.innerHTML = activeImg.dataset.sum;
+        }
         function gscSlide(dir) {
             const s = document.getElementById('gscSlider');
             if (!s) return;
@@ -1404,7 +1447,7 @@
             s.scrollBy({ left: dir * step, behavior: 'smooth' });
         }
         function openLightbox(el) {
-            const img = el.querySelector('img');
+            const img = el.querySelector('img.active') || el.querySelector('img');
             document.getElementById('lightboxImg').src = img.src;
             document.getElementById('lightbox').classList.add('open');
             document.body.style.overflow = 'hidden';
@@ -1662,5 +1705,5 @@
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1308cdebfef1852',t:'MTc4MjY5MDE3MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();
         const fy = document.getElementById('footerYear'); if (fy) fy.textContent = new Date().getFullYear();
-    </script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1bce3ae5a180115',t:'MTc4NDE2MTczMg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+    </script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1caa5b30f5be1e4',t:'MTc4NDMwNTk5NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
